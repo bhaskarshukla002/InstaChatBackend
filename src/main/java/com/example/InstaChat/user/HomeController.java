@@ -1,8 +1,7 @@
-package com.example.InstaChat.controllers;
+package com.example.InstaChat.user;
 
-import com.example.InstaChat.user.UserServiceImpl;
-import com.example.InstaChat.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,21 +9,26 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 import java.util.List;
 
-@RestController
-@RequestMapping("/home")
+@Controller
 public class HomeController {
 
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserService userService;
 
-    @GetMapping("/user")
+    @GetMapping("/home/user")
     public List<User> getUser(){
         System.out.println("getting users");
-        return this.userServiceImpl.getUsers();
+        return this.userService.getUsers();
     }
-    @GetMapping("/current-user")
+    @GetMapping("/home/current-user")
     public String getLoggedInUser(Principal principal){
         return principal.getName();
 
     }
+
+    @RequestMapping("/")
+    public String getLoggedInUser(){
+        return "index";
+    }
+
 }

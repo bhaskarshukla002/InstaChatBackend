@@ -1,12 +1,10 @@
-package com.example.InstaChat.likeFollowComment;
+package com.example.InstaChat.follow;
 
-import com.example.InstaChat.likeFollowComment.dto.FollowDTO;
-import com.example.InstaChat.likeFollowComment.dto.FollowRequestDTO;
-import com.example.InstaChat.servicesinterface.FollowService;
+import com.example.InstaChat.follow.model.FollowDTO;
+import com.example.InstaChat.follow.model.FollowRequestDTO;
 import com.example.InstaChat.user.User;
 import com.example.InstaChat.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.messaging.MessagingException;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class FollowServiceImpl implements FollowService {
+public class FollowService {
 
     @Autowired
     private UserRepository userRepository;
 
-    @Override
     public List<FollowDTO> getFollowerList(String profileUserName, String currentUser)  {
         // Find the user for the given username
         User profileUser = userRepository.findByUserName(profileUserName)
@@ -38,7 +35,6 @@ public class FollowServiceImpl implements FollowService {
         return followerDTOs;
     }
 
-    @Override
     public List<FollowDTO> getFollowingList(String profileUsername, String currentUser) {
         // Find the user for the given username
         User profileUser = userRepository.findByUserName(profileUsername)
@@ -57,7 +53,6 @@ public class FollowServiceImpl implements FollowService {
         return followingDTOs;
     }
 
-    @Override
     public String followUser(FollowRequestDTO followRequest) {
         // Find the current user (follower) and the target user to be followed
         User follower = userRepository.findById(followRequest.getUserid())

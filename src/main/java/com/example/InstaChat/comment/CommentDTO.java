@@ -1,4 +1,4 @@
-package com.example.InstaChat.likeFollowComment.dto;
+package com.example.InstaChat.comment;
 
 import lombok.*;
 

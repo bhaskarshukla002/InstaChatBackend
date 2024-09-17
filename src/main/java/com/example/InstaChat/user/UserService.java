@@ -1,6 +1,9 @@
 package com.example.InstaChat.user;
 
+import com.example.InstaChat.user.model.ChangePasswordRequest;
+import com.example.InstaChat.user.model.ProfileDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,7 +14,7 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -30,11 +33,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    @Override
+    @Cacheable(value = "profiles", key = "#username")
     public ProfileDTO getProfile(String userName) throws NoSuchElementException,NullPointerException {
-//        User user=userRepository.findByUserName(userName).orElseThrow();
         User user=userRepository.findByEmail(userName).orElseThrow();
-
         return ProfileDTO.builder()
                 .name(user.getName())
                 .userId(user.getUserId())
@@ -43,7 +44,6 @@ public class UserServiceImpl implements UserService {
                 .followingCount(user.getFollowing().size()).posts(user.getPosts()).build();
     }
 
-    @Override
     public String editProfile(String userName, ProfileDTO newDetails) throws NoSuchElementException {
         User user=userRepository.findByEmail(userName).orElseThrow();
         user.setName(newDetails.getName());

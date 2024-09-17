@@ -1,4 +1,4 @@
-package com.example.InstaChat.feed.entities;
+package com.example.InstaChat.posts.model;
 
 import lombok.*;
 

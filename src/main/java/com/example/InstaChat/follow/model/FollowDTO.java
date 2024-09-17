@@ -1,4 +1,4 @@
-package com.example.InstaChat.likeFollowComment.dto;
+package com.example.InstaChat.follow.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

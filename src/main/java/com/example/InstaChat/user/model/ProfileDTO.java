@@ -1,6 +1,6 @@
-package com.example.InstaChat.user;
+package com.example.InstaChat.user.model;
 
-import com.example.InstaChat.feed.entities.Post;
+import com.example.InstaChat.posts.model.Post;
 import lombok.*;
 
 import java.util.List;

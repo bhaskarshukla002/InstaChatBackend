@@ -1,6 +1,6 @@
-package com.example.InstaChat.likeFollowComment.entities;
+package com.example.InstaChat.like.model;
 
-import com.example.InstaChat.feed.entities.Post;
+import com.example.InstaChat.posts.model.Post;
 import com.example.InstaChat.user.User;
 import jakarta.persistence.*;
 import lombok.*;

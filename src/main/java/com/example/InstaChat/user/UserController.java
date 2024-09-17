@@ -1,9 +1,9 @@
-package com.example.InstaChat.controllers;
+package com.example.InstaChat.user;
 
-import com.example.InstaChat.dto.ChangePasswordRequest;
-import com.example.InstaChat.dto.ProfileDTO;
-import com.example.InstaChat.services.UserServiceImpl;
+import com.example.InstaChat.user.model.ChangePasswordRequest;
+import com.example.InstaChat.user.model.ProfileDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +15,12 @@ import java.util.NoSuchElementException;
 @RequestMapping("/api")
 public class UserController {
     @Autowired
-    UserServiceImpl userServiceImpl;
+    UserService userService;
 
     @GetMapping(value="/user", produces = "application/json")
     ResponseEntity<?> getUserProfile(@RequestParam(name = "username") String username){
         try {
-            ProfileDTO profile = userServiceImpl.getProfile(username);
+            ProfileDTO profile = userService.getProfile(username);
             return ResponseEntity.status(HttpStatus.OK).body(profile);
         }catch(NoSuchElementException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -33,7 +33,7 @@ public class UserController {
 
     @PutMapping("/user")
     ResponseEntity<?> editUserDetails(@RequestBody ProfileDTO userNewDetail,@RequestParam(name = "username") String username){
-        String response= userServiceImpl.editProfile(username,userNewDetail);
+        String response= userService.editProfile(username,userNewDetail);
         return ResponseEntity.ok().body(response);
     }
 
@@ -42,7 +42,7 @@ public class UserController {
             @RequestBody ChangePasswordRequest request,
             Principal connectedUser
     ) {
-        userServiceImpl.changePassword(request, connectedUser);
+        userService.changePassword(request, connectedUser);
         return ResponseEntity.ok().build();
     }
 

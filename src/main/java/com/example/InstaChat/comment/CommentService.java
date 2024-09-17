@@ -1,13 +1,9 @@
-package com.example.InstaChat.likeFollowComment;
+package com.example.InstaChat.comment;
 
-import com.example.InstaChat.likeFollowComment.dto.CommentDTO;
-import com.example.InstaChat.likeFollowComment.entities.Comment;
-import com.example.InstaChat.feed.entities.Post;
-import com.example.InstaChat.likeFollowComment.repository.CommentRepository;
+import com.example.InstaChat.posts.PostRepository;
+import com.example.InstaChat.posts.model.Post;
 import com.example.InstaChat.user.User;
-import com.example.InstaChat.feed.repository.PostRepository;
 import com.example.InstaChat.user.UserRepository;
-import com.example.InstaChat.servicesinterface.CommentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class CommentServiceImpl implements CommentService {
+public class CommentService  {
 
     @Autowired
     private PostRepository postRepository;
@@ -26,7 +22,6 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    @Override
     public String postComment(CommentDTO commentDTO) {
         Post post = postRepository.findById(Long.parseLong(commentDTO.getPostId())).orElse(null);
         User user = userRepository.findByUserName(commentDTO.getUsername()).get();

@@ -1,6 +1,6 @@
-package com.example.InstaChat.feed.repository;
+package com.example.InstaChat.posts;
 
-import com.example.InstaChat.feed.entities.Post;
+import com.example.InstaChat.posts.model.Post;
 import com.example.InstaChat.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

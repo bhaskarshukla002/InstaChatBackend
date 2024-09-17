@@ -1,7 +1,6 @@
-package com.example.InstaChat.likeFollowComment.repository;
+package com.example.InstaChat.comment;
 
-import com.example.InstaChat.likeFollowComment.entities.Comment;
-import com.example.InstaChat.feed.entities.Post;
+import com.example.InstaChat.posts.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

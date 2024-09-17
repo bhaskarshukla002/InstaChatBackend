@@ -1,13 +1,11 @@
-package com.example.InstaChat.likeFollowComment;
+package com.example.InstaChat.like;
 
-import com.example.InstaChat.likeFollowComment.dto.LikeDTO;
-import com.example.InstaChat.likeFollowComment.entities.Like;
-import com.example.InstaChat.feed.entities.Post;
-import com.example.InstaChat.likeFollowComment.repository.LikeRepository;
+import com.example.InstaChat.posts.model.Post;
+import com.example.InstaChat.like.model.Like;
+import com.example.InstaChat.like.model.LikeDTO;
 import com.example.InstaChat.user.User;
-import com.example.InstaChat.feed.repository.PostRepository;
+import com.example.InstaChat.posts.PostRepository;
 import com.example.InstaChat.user.UserRepository;
-import com.example.InstaChat.servicesinterface.LikeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class LikeServiceImpl implements LikeService {
+public class LikeService {
 
     @Autowired
     private PostRepository postRepository;
@@ -26,7 +24,6 @@ public class LikeServiceImpl implements LikeService {
     @Autowired
     private LikeRepository likeRepository;
 
-    @Override
     public String postLike(LikeDTO likeDTO) {
         Post post = postRepository.findById(Long.parseLong(likeDTO.getPostId())).orElse(null);
         User user = userRepository.findByUserName(likeDTO.getUsername()).get();
