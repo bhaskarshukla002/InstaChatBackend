@@ -27,15 +27,16 @@
    ```
 2. **Configure Database: Update the application.properties file with your MySQL database credentials**:
 
-3. **Install Dependencies: Ensure you have Java and Maven installed. Then run:**
-  ```bash
-  mvn install
-  ```
-4. **Run the Application:**
-  ```bash
-  mvn spring-boot:run
-  ```
-5. **Access API Documentation: The application runs on http://localhost:8080 by default. Visit /swagger-ui.html (if integrated) for API documentation.**
+3. **Install Dependencies: Ensure you have Java and Maven installed. Then run**:
+   ```
+   mvn install
+   ```
+4. **Run the Application**:
+   ```
+   mvn spring-boot:run
+   ```
+
+5. **Access API Documentation: The application runs on http://localhost:8080 by default. Visit /swagger-ui.html (if integrated) for API documentation**:
 
 ## API Endpoints
 | Endpoint |	Method |	Description |
